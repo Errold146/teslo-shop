@@ -1,0 +1,44 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import type { Product } from "@/interfaces"
+import { formatCurrency } from "@/utils/currency"
+
+interface Props {
+    product: Product
+}
+
+export function ProductGridItem({product}: Props) {
+
+    const [displayImage, setDisplayImage] = useState(product.images[0])
+
+    return (
+        <div className=" rounded-md overflow-hidden fade-in">
+            <Link href={`/product/${product.slug}`}>
+                <Image 
+                    src={`/products/${displayImage}`}
+                    alt={product.title}
+                    className=" w-full object-cover rounded"
+                    width={500}
+                    height={500}
+                    onMouseEnter={() => setDisplayImage(product.images[1])}
+                    onMouseLeave={() => setDisplayImage(product.images[0])}
+                />
+            </Link>
+
+            <div className="p-4 flex flex-col">
+                <Link 
+                    href={`/product/${ product.slug }`}
+                    className=" hover:text-indigo-600"
+                >
+                    {product.title}
+                </Link>
+
+                <span className=" text-indigo-600 font-bold">{formatCurrency(product.price)}</span>
+
+            </div>
+        </div>
+    )
+}
