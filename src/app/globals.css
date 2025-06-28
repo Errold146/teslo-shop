@@ -39,15 +39,48 @@ body {
 }
 
 .fade-in {
-    -webkit-animation-duration: 0.5s;
-    animation-duration: 0.5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-shake {
+    animation: shake 0.4s ease-in-out; 
+}
 
 .btn-primary {
     background-color: #4f46e5; /* Tailwind bg-indigo-600 */
@@ -77,4 +110,39 @@ body {
 
 .btn-secondary:hover {
     background-color: #d1d5db; /* Tailwind hover:bg-gray-300 */
+}
+
+.btn-disabled {
+    background-color: #e2e8f0;
+    /* gray-300 */
+    color: #6b7280;
+    /* gray-500 */
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease; 
+}
+
+.btn-disabled:hover {
+    background-color: #e2e8f0; 
+}
+
+/* styles/globals.css */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.25s ease-out; 
 }

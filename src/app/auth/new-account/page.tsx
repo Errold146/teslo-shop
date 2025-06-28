@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { RegisterForm } from './ui/RegisterForm';
 
 export default function LoginPage() {
     return (
@@ -7,54 +8,7 @@ export default function LoginPage() {
                 
                 <h1 className="text-3xl font-extrabold mb-8 text-center text-indigo-700 tracking-tight">Crear Cuenta</h1>
 
-                <form className="flex flex-col gap-6">
-                    <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-semibold text-gray-700">
-                            Nombre Completo
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                            type="email"
-                            autoComplete="email"
-                            placeholder="Juan Perez R..."
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-semibold text-gray-700">
-                            Correo electrónico
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                            type="text"
-                            autoComplete="email"
-                            placeholder="tucorreo@ejemplo.com"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-semibold text-gray-700">
-                            Contraseña
-                        </label>
-                        <input
-                            id="password"
-                            name="password"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                            type="password"
-                            autoComplete="current-password"
-                            placeholder="***********"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full py-3 mt-2 rounded-lg bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold text-lg shadow-md hover:from-indigo-600 hover:to-blue-600 transition"
-                    >
-
-                        Crear Cuenta
-                    </button>
-                </form>
+                <RegisterForm />
 
                 <div className="flex items-center my-8">
                     <div className="flex-1 border-t border-gray-200"></div>

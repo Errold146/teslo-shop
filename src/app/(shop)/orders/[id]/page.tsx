@@ -7,6 +7,11 @@ import { formatCurrency } from "@/utils/currency";
 import clsx from "clsx";
 import { IoCardOutline } from "react-icons/io5";
 
+export const metadata = {
+    title: "Tus Ordenes",
+    description: "Aquí te presentamos un resumen de tus ordenes."
+};
+
 const productsInCart = [
     initialData.products[0],
     initialData.products[21],

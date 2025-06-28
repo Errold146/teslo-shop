@@ -5,6 +5,11 @@ import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { formatCurrency } from "@/utils/currency";
 
+export const metadata = {
+    title: "Confirmar Datos",
+    description: "Revisa que todo este en orden y los datos sean correctos para completar la compra en Teslo Shop."
+};
+
 const productsInCart = [
     initialData.products[0],
     // initialData.products[21],
@@ -22,11 +27,28 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 gap-6">
 
                     {/* Continuar comprando */}
-                    <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                        <span className="text-lg font-medium text-gray-700">Ajustar elementos</span>
-                        <Link href={"/cart"} className="text-indigo-600 hover:text-indigo-800 font-semibold text-lg transition">
-                            Editar Productos
-                        </Link>
+                    <div className="w-full sm:max-w-2x">
+                        <span className="block text-lg font-medium text-gray-700 mb-2">Ajustar elementos</span>
+                        <nav className="grid grid-cols-3 gap-4 border rounded-lg p-4 bg-gray-50 shadow-sm text-center">
+                            <Link
+                                href="/"
+                                className="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-100 font-medium transition-colors duration-200 rounded-md p-1 text-center"
+                            >
+                                Continuar comprando
+                            </Link>
+                            <Link
+                                href="/cart"
+                                className="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-100 font-medium transition-colors duration-200 rounded-md p-1 text-center"
+                            >
+                                Editar productos
+                            </Link>
+                            <Link
+                                href="/checkout/address"
+                                className="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-100 font-medium transition-colors duration-200 rounded-md p-1 text-center"
+                            >
+                                Corregir dirección
+                            </Link>
+                        </nav>
                     </div>
 
                     {/* Items en el carrito */}

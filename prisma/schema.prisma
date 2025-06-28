@@ -1,11 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -30,6 +24,11 @@ enum Gender {
     unisex
 }
 
+enum Role {
+    admin
+    user
+}
+
 model Category {
     id   String @id @default(uuid())
     name String @unique
@@ -48,16 +47,50 @@ model Product {
     title       String
     gender      Gender
 
-    category   Category @relation(fields: [categoryId], references: [id])
-    categoryId String
+    category     Category       @relation(fields: [categoryId], references: [id])
+    categoryId   String
+    ProductImage ProductImage[]
 
     @@index([gender])
-    ProductImage ProductImage[]
 }
 
 model ProductImage {
-    id  Int    @id @default(autoincrement())
-    url String @unique
+    id        Int     @id @default(autoincrement())
+    url       String  @unique
     product   Product @relation(fields: [productId], references: [id])
     productId String
+}
+
+model User {
+    id            String       @id @default(uuid())
+    name          String
+    email         String       @unique
+    emailVerified DateTime?
+    password      String
+    role          Role         @default(user)
+    image         String?
+    address       UserAddress?
+}
+
+model Country {
+    id          String        @id
+    name        String
+    UserAddress UserAddress[]
+}
+
+model UserAddress {
+    id         String  @id @default(uuid())
+    firstName  String
+    lastName   String
+    address    String
+    address2   String?
+    postalCode String
+    city       String
+    phone      String
+
+    country   Country @relation(fields: [countryId], references: [id])
+    countryId String
+
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
 }

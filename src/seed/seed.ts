@@ -1,25 +1,55 @@
+import bcryptjs from 'bcryptjs'
+
 interface SeedProduct {
-    description: string;
-    images: string[];
-    inStock: number;
-    price: number;
-    sizes: ValidSizes[];
-    slug: string;
-    tags: string[];
-    title: string;
-    type: ValidTypes;
+    description: string
+    images: string[]
+    inStock: number
+    price: number
+    sizes: ValidSizes[]
+    slug: string
+    tags: string[]
+    title: string
+    type: ValidTypes
     gender: 'men' | 'women' | 'kids' | 'unisex'
 }
 
-type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
-type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
+interface SeedUser {
+   email: string
+   password: string
+   name: string
+   role: 'admin'  | 'user'
+}
+
+type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL'
+type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats'
 
 interface SeedData {
+    users: SeedUser[]
     categories: string[]
     products: SeedProduct[]
 }
 
 export const initialData: SeedData = {
+    users: [
+        {
+            email: 'correo@correo.com',
+            name: 'Errold Nunez S.',
+            password: bcryptjs.hashSync('password'),
+            role: 'admin'
+        },
+        {
+            email: 'margarita@margarita.com',
+            name: 'Margarita Pauth B.',
+            password: bcryptjs.hashSync('password'),
+            role: 'user'
+        },
+        {
+            email: 'luis@luis.com',
+            name: 'Luis Navarro M.',
+            password: bcryptjs.hashSync('password'),
+            role: 'user'
+        },
+    ],
     categories: ['Shirts', 'Pants', 'Hoodies', 'Hats'],
     products: [
         {

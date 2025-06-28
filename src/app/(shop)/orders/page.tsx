@@ -1,7 +1,11 @@
-import { Title } from '@/components';
-
 import Link from 'next/link';
 import { IoCardOutline } from 'react-icons/io5';
+import { Title } from '@/components';
+
+export const metadata = {
+    title: "Total de Ordenes",
+    description: "Revisión del total de las ordenes realizadas."
+};
 
 export default function OrdersPage() {
     return (

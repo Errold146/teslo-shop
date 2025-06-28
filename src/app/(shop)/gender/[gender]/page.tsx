@@ -4,16 +4,34 @@ import { notFound, redirect } from "next/navigation"
 import { getPaginatedProductsWhitImages } from "@/actions"
 import { Pagination, ProductGrid, Title } from "@/components"
 
+const genderMap: Record<string, string> = {
+    men: "Hombres",
+    women: "Mujeres",
+    kids: "Niños",
+    unisex: "Todos"
+};
+
+export async function generateMetadata({ params }: { params: { gender: string } }) {
+
+    const genderName = genderMap[params.gender];
+
+    if (!genderName) {
+        return {
+            title: "Categoría no encontrada",
+            description: "La categoría solicitada no existe."
+        };
+    }
+
+    return {
+        title: `${genderName}`,
+        description: `Explora nuestra selección de productos para ${genderName} en Teslo Shop.`
+    };
+}
+
 // @ts-expect-error// @ts-expect-error Next.js dynamic params may be a promise 
 export default async function GenderPage({ params, searchParams }) {
+    
     const { gender } = await params as { gender: string };
-    const genderMap: Record<string, string> = {
-        men: "hombres",
-        women: "mujeres",
-        kids: "niños",
-        unisex: "todos"
-    };
-
     const { page } = await searchParams;
     const pageNumber = page ? parseInt(page) : 1;
 
@@ -28,7 +46,7 @@ export default async function GenderPage({ params, searchParams }) {
         <>
             <Title
                 title="Productos"
-                subTitle={`Productos para ${genderMap[gender]}`}
+                subTitle={`Productos Para ${genderMap[gender]}`}
                 className="mb-2"
             />
             <Pagination totalPages={totalPages} />

@@ -4,6 +4,11 @@ import { ProductsInCart } from "./ui/ProductsInCart";
 import { MdAddShoppingCart } from "react-icons/md";
 import { OrderSummary } from "./ui/OrderSummary";
 
+export const metadata = {
+    title: "Carrito de compras",
+    description: "Revisa los productos en tu carrito antes de completar la compra en Teslo Shop."
+};
+
 export default function CartPage() {
 
     return (
