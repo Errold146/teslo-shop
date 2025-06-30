@@ -59,7 +59,9 @@ Este proyecto es una tienda en línea desarrollada con [Next.js](https://nextjs.
     npx prisma migrate dev
     ```
 
-6. Ejecutar seed para insertar datos de relleno en la base datos. ¡Advertencia, si hay datos previos los eliminará!
+6. Ejecutar seed para insertar datos de relleno en la base datos, no se insertan ordenes ni direcciones.
+> ℹ️ ¡Advertencia, si hay datos previos los eliminará!
+
     ```
     npm run seed
     ```
@@ -87,6 +89,18 @@ Este proyecto es una tienda en línea desarrollada con [Next.js](https://nextjs.
 
 ## 🧭 Consideraciones
 ⚠️ Este proyecto está actualmente en desarrollo. Algunas funcionalidades pueden no estar completas.
+
+## 🧪 Usuarios de prueba generados por `npm run seed`
+
+Después de ejecutar el script de seed (`npm run seed`), se insertarán automáticamente **tres usuarios** en la base de datos. Puedes utilizarlos para probar flujos de autenticación y gestión de roles.
+
+| Rol           | Email                     | Contraseña |
+|---------------|---------------------------|------------|
+| Admin         | correo@correo.com         | password   |
+| User          | margarita@margarita.com   | password   |
+| User          | luis@luis.com             | password   |
+
+> ℹ️ Todos los usuarios tienen contraseñas que se encryptan antes de subirlas en la base de datos. Recuerda cambiarlas o eliminarlas antes de subir a producción.
 
 ## ☁️ Despliegue
 

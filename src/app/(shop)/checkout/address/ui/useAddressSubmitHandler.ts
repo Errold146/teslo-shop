@@ -7,12 +7,17 @@ import { deleteUserAddress } from '@/actions'
 import { saveAddress } from '@/utils/save-address'
 import type { FormInputs } from './AddressForm'
 
+type AddressOnly = Omit<FormInputs, 'rememberAddress'>
+
+
 export const useAddressSubmitHandler = (session: any, setAddress: Function) => {
     const router = useRouter()
     const [, startTransition] = useTransition()
 
     const handleSubmit = async (data: FormInputs) => {
-        setAddress(data)
+        const { rememberAddress, ...addressOnly }: AddressOnly & { rememberAddress?: boolean } = data
+        setAddress(addressOnly)
+
 
         try {
             if (!data.rememberAddress) {
@@ -35,7 +40,9 @@ export const useAddressSubmitHandler = (session: any, setAddress: Function) => {
             const formData = new FormData()
             formData.set('userId', session.user.id)
 
-            Object.entries(data).forEach(([key, value]) => {
+            const { rememberAddress, ...addressData } = data
+
+            Object.entries(addressData).forEach(([key, value]) => {
                 if (value !== undefined) {
                     formData.set(key, String(value))
                 }

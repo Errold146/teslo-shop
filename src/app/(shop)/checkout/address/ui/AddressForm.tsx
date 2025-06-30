@@ -3,14 +3,10 @@
 import { useTransition, useEffect } from 'react'
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
-import { toast } from 'sonner'
 import { IoWarningOutline } from "react-icons/io5"
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Address, Country } from "@/interfaces"
 import { useAddressStore } from "@/store"
-import { deleteUserAddress, setUserAddress } from "@/actions"
-import { saveAddress } from '@/utils/save-address'
-import { useRouter } from 'next/navigation'
 import { useAddressSubmitHandler } from './useAddressSubmitHandler'
 
 export type FormInputs = {
@@ -42,7 +38,6 @@ const fields = [
 
 export const AddressForm = ({countries, userStoreAddress = {}}: Props) => {
 
-    const router = useRouter()
     const { handleSubmit, register, formState: { errors }, reset } = useForm<FormInputs>({
         mode: 'onTouched',
         defaultValues: {

@@ -16,9 +16,11 @@ import {
 } from "react-icons/io5"
 import clsx from "clsx"
 import { useUIStore } from "@/store"
+import { useRouter } from "next/navigation"
 
 export const Sidebar = () => {
 
+    const router = useRouter()
     const openMenu = useUIStore(state => state.isSideMenuOpen)
     const closeMenu = useUIStore(state => state.closeSideMenu)
 
@@ -31,6 +33,7 @@ export const Sidebar = () => {
         closeMenu()
         await new Promise(r => setTimeout(r, 100))
         await signOut({ redirect: false })
+        router.push('/')
     }
 
     return (
@@ -108,6 +111,14 @@ export const Sidebar = () => {
                                 <IoPersonOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                                 <span className="text-lg font-medium text-gray-800">Perfil</span>
                             </Link>
+                            <Link
+                                href={"/orders"}
+                                onClick={closeMenu}
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
+                            >
+                                <IoTicketOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
+                                <span className="text-lg font-medium text-gray-800">Órdenes</span>
+                            </Link>
                             <button
                                 onClick={handleLogout}
                                 className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
@@ -115,14 +126,6 @@ export const Sidebar = () => {
                                 <IoLogOutOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                                 <span className="text-lg font-medium text-gray-800">Cerrar Sesión</span>
                             </button>
-                            <Link
-                                href={"/"}
-                                onClick={closeMenu}
-                                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
-                            >
-                                <IoTicketOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
-                                <span className="text-lg font-medium text-gray-800">Órdenes</span>
-                            </Link>
                         </>
                     )}
                 </div>

@@ -1,7 +1,7 @@
+import Image from "next/image";
+import { redirect } from "next/navigation";
 import { Title } from "@/components";
 import { auth } from "../../../auth.config";
-import { redirect } from "next/navigation";
-import Image from "next/image";
 
 export default async function ProfilePage() {
     const session = await auth();
@@ -11,7 +11,10 @@ export default async function ProfilePage() {
 
     return (
         <div className="max-w-4xl mx-auto px-6 py-12">
-            <Title title="Perfil del Usuario" />
+            <Title 
+                title="Perfil del Usuario" 
+                subTitle={`Bienvenido(a): ${name}`}
+            />
 
             <div className="mt-10 bg-white border border-gray-100 rounded-3xl shadow-lg p-10 flex flex-col md:flex-row gap-10">
                 {/* Avatar */}

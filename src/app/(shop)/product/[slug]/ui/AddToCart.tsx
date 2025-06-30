@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from 'framer-motion'
 import { TbShoppingCartCheck, TbShoppingCartX } from "react-icons/tb"
 import { useCartStore } from "@/store"
 import { getProductStock } from "@/actions"
@@ -66,12 +67,21 @@ export const AddToCart = ({product}: Props) => {
 
             {
                 posted && !size && (
-                    <span
-                        className="flex items-center gap-2 mb-2 text-sm font-semibold text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2 shadow-sm fade-in"
-                    >
-                        <TbShoppingCartX size={25} />
-                        Seleccione una talla por favor.
-                    </span>
+                    <AnimatePresence>
+                        {posted && !size && (
+                            <motion.div
+                                key="missing-size"
+                                initial={{ opacity: 0, y: -6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -6 }}
+                                transition={{ duration: 0.25 }}
+                                className="flex items-center gap-2 mb-2 text-sm font-semibold text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2 shadow-sm"
+                            >
+                                <TbShoppingCartX size={25} />
+                                Seleccione una talla por favor.
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 )
             }
 
@@ -103,10 +113,21 @@ export const AddToCart = ({product}: Props) => {
 
             {/* Mensaje de éxito */}
             {showSuccess && (
-                <div className="mt-4 flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-100 border border-indigo-300 text-indigo-800 text-sm font-medium shadow transition-all animate-fade-in fade-in">
-                    <TbShoppingCartCheck size={25} />
-                    Producto agregado al carrito
-                </div>
+                <AnimatePresence>
+                    {showSuccess && (
+                        <motion.div
+                            key="added-success"
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.3 }}
+                            className="mt-4 flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-100 border border-indigo-300 text-indigo-800 text-sm font-medium shadow"
+                        >
+                            <TbShoppingCartCheck size={25} />
+                            Producto agregado al carrito
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             )}
         </>
     )

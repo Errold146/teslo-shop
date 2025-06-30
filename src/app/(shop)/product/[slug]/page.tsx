@@ -4,7 +4,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from "next/navigation";
 import { getProductSlug } from "@/actions";
 import { formatCurrency } from "@/utils/currency";
-import { ProductSlideShow, QuantitySelector, SizeSelector, StockLabel } from "@/components";
+import { BackButton, ProductSlideShow } from "@/components";
 import { AddToCart } from './ui/AddToCart';
 
 type Props = {
@@ -30,6 +30,7 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
 
 // @ts-expect-error Next.js dynamic params may be a promise
 export default async function ProductPage({ params }) {
+
     const { slug } = await params;
     const product = await getProductSlug(slug)
 
@@ -50,7 +51,12 @@ export default async function ProductPage({ params }) {
             {/* Sección de detalles del producto */}
             <div className="w-full md:w-1/2 flex flex-col justify-between gap-3 mb-10">
                 <h1 className="font-extrabold text-xl md:text-4xl text-gray-900">{product.title}</h1>
-                <p className="text-lg md:text-2xl text-indigo-600 font-semibold">{formatCurrency(product.price)}</p>
+                <div className="flex justify-between items-center">
+                    <p className="text-lg md:text-2xl text-indigo-600 font-semibold">
+                        {formatCurrency(product.price)}
+                    </p>
+                    <BackButton label='Vover a la tienda' />
+                </div>
                 <hr className="border-t border-gray-500" />
 
                 <AddToCart product={safeProduct} />
