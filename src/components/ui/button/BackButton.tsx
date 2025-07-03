@@ -14,7 +14,7 @@ export const BackButton: FC<BackButtonProps> = ({ label, className = '' }) => {
     return (
         <button
             onClick={() => router.back()}
-            className={`text-indigo-600 hover:text-indigo-700 hover:underline text-sm md:text-base ${className}`}
+            className={` btn-primary cursor-pointer ${className}`}
         >
             {label}
         </button>

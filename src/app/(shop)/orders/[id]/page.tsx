@@ -1,11 +1,11 @@
-import clsx from "clsx";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { IoCardOutline } from "react-icons/io5";
-import { Title } from "@/components";
+import { IoCardOutline, IoCloseCircleOutline } from "react-icons/io5";
+import clsx from "clsx";
+import { PayPalButton, Title } from "@/components";
 import { getOrderById } from "@/actions";
 import { formatCurrency } from "@/utils/currency";
-import { redirect } from "next/navigation";
 
 export const metadata = {
     title: "Ordenes",
@@ -41,7 +41,7 @@ export default async function OrderPageId({params}) {
                             "flex items-center rounded-lg py-2 px-3.5 text-xs font-semibold text-white mb-5",
                             {
                                 "bg-red-500": !order!.isPaid,
-                                "bg-green-600": order!.isPaid
+                                "bg-green-500": order!.isPaid
                             }
                         )
                     }>
@@ -69,6 +69,7 @@ export default async function OrderPageId({params}) {
                                 width={140}
                                 height={140}
                                 className="rounded-lg object-cover border border-gray-300 mx-auto sm:mx-0"
+                                priority
                             />
 
                             {/* Detalles del producto */}
@@ -144,24 +145,26 @@ export default async function OrderPageId({params}) {
                         <span className="text-2xl font-semibold">Total:</span>
                         <span className="text-right text-2xl text-indigo-600">{formatCurrency(order!.total)}</span>
                     </div>
-                    <div className="mt-5 w-full">
-                        <div className={
-                            clsx(
-                                "flex items-center rounded-lg py-2 px-3.5 text-xs font-semibold text-white mb-5",
-                                {
-                                    "bg-red-500": !order!.isPaid,
-                                    "bg-green-600": order!.isPaid
-                                }
+                    <div className="mt-5 md:mx-8 w-full">
+                        { order!.isPaid
+                            ? (
+                                <div
+                                    className={clsx(
+                                        "flex items-center rounded-lg py-2 mr-14 px-3.5 text-xs font-semibold text-white mb-5",
+                                        "bg-green-500" 
+                                    )}
+                                >
+                                    <IoCardOutline size={30} />
+                                    <span className="ml-3 text-sm">
+                                        Esta orden ha sido cancelada, pronto recibara su pedido, muchas gracias!.
+                                    </span>
+                                </div>
                             )
-                        }>
-                            <IoCardOutline size={30} />
-                            {/* <span className=" ml-3 text-sm">Pendiente de pago</span> */}
-                            <span className=" ml-3 text-sm">
-                                {
-                                    order?.isPaid ? 'Cancelada.' : 'Pendiente de pago...'
-                                }
-                            </span>
-                        </div>
+                            : (<PayPalButton 
+                                amount={order!.total} 
+                                orderId={order!.id} 
+                            />)
+                        }
                     </div>
                 </div>
             </div>

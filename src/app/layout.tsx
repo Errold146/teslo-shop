@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css"; 
 import { Playfair_Display } from "next/font/google"
 import { Toaster } from 'sonner'
-import { Provider } from "@/components";
+import { Providers } from "@/components";
 
 export const metadata: Metadata = {
     title: {
@@ -24,28 +24,29 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             <body
                 className={`${playfairDisplay.variable}`}
             >
-                <Provider>
+                <Providers>
 
                     <Toaster
                         richColors
                         position="top-right"
                         toastOptions={{
                             style: {
-                                background: '#1a1a2e',           // Fondo más profundo
-                                color: '#f1f1f1',                // Texto más claro
-                                fontSize: '20px',                // Letra más grande
+                                background: '#1a1a2e', 
+                                color: '#f1f1f1', 
+                                fontSize: '20px', 
                                 fontWeight: '600',
                                 borderRadius: '10px',
                                 padding: '18px 24px',
                                 boxShadow: '0 12px 25px rgba(0, 0, 0, 0.25)',
                                 border: '1px solid #333',
                             },
-                            className: 'backdrop-blur-sm'      // Suave desenfoque trasero
+                            className: 'backdrop-blur-sm' 
                         }}
                     />
 
                     {children}
-                </Provider>
+
+                </Providers>
             </body>
         </html>
     )

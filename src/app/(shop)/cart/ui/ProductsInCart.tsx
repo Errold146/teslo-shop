@@ -35,6 +35,7 @@ export const ProductsInCart = () => {
                         width={150}
                         height={150}
                         className="rounded-lg object-cover border border-gray-300 mx-auto sm:mx-0"
+                        priority
                     />
 
                     {/* Detalles del producto */}

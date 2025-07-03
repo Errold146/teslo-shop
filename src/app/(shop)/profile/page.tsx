@@ -27,6 +27,7 @@ export default async function ProfilePage() {
                                 width={128}
                                 height={128}
                                 className="object-cover w-full h-full"
+                                priority
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center text-6xl text-indigo-500 bg-indigo-50">

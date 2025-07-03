@@ -112,6 +112,7 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
                                     height={100}
                                     className="object-contain w-full h-full"
                                     draggable={false}
+                                    priority
                                 />
                             </div>
                         </SwiperSlide>
