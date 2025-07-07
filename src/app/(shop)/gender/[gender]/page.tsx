@@ -8,23 +8,24 @@ const genderMap: Record<string, string> = {
     men: "Hombres",
     women: "Mujeres",
     kids: "Niños",
-    unisex: "Todos"
+    unisex: "Unisex"
 };
 
-export async function generateMetadata({ params }: { params: { gender: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ gender: string }> }) {
+    const { gender } = await params;
 
-    const genderName = genderMap[params.gender];
+    const genderName = genderMap[gender];
 
     if (!genderName) {
         return {
             title: "Categoría no encontrada",
-            description: "La categoría solicitada no existe."
+            description: "La categoría solicitada no existe.",
         };
     }
 
     return {
         title: `${genderName}`,
-        description: `Explora nuestra selección de productos para ${genderName} en Teslo Shop.`
+        description: `Explora nuestra selección de productos para ${genderName} en Teslo Shop.`,
     };
 }
 

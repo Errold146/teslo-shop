@@ -81,7 +81,7 @@ export const TopMenu = () => {
                 <Link
                     href="/search"
                 >
-                    <IoSearchOutline className="w-6 h-6" />
+                    <IoSearchOutline size={30} />
                 </Link>
 
                 <div className="relative ">
@@ -92,7 +92,7 @@ export const TopMenu = () => {
                             : '/cart'
                         }
                     >
-                        <IoCartOutline className="w-6 h-6" />
+                        <IoCartOutline size={30} />
                         {
                             totalItemsInCart > 0 && (
                                 <span 
@@ -106,7 +106,7 @@ export const TopMenu = () => {
                 </div>
 
                 <button
-                    className="m-2 p-2 rounded-md transition-all bg-indigo-600 hover:bg-indigo-800 text-white"
+                    className=" btn-secondary transition-all duration-200 ease-in-out cursor-pointer"
                     onClick={() => openMenu()}
                 >
                     Menú

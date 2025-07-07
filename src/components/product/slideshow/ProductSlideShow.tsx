@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "./slideshow.css";
 import Image from "next/image";
+import { ProductImage } from "../image/ProductImage";
 
 interface Props {
     images: string[];
@@ -18,9 +19,9 @@ interface Props {
 }
 
 export const ProductSlideShow = ({ images, title, className }: Props) => {
+    
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
-
-    if (!images || images.length === 0) return null;
+    const imagesToShow = images && images.length > 0 ? images : ['/imgs/nophoto.jpg'];
 
     return (
         <div
@@ -51,19 +52,17 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
                     modules={[FreeMode, Navigation, Thumbs, Autoplay]}
                     className="w-full h-full"
                 >
-                    {images.map((image) => (
+                    {imagesToShow.map((image) => (
                         <SwiperSlide
                             key={image}
                             className="flex items-center justify-center w-full h-full"
                         >
-                            <Image
-                                src={`/products/${image}`}
-                                alt={title}
-                                fill
-                                sizes="(max-width: 1000px) 120vw, 1000px"
+                            <ProductImage
+                                src={image}
+                                alt={image === '/imgs/nophoto.jpg' ? 'Imagen no disponible' : title}
                                 className="object-contain w-full h-full"
-                                draggable={false}
-                                priority
+                                width={500}
+                                height={400}
                             />
                         </SwiperSlide>
                     ))}
@@ -92,7 +91,7 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
                         1024: { slidesPerView: Math.min(images.length, 5) },
                     }}
                 >
-                    {images.map((image) => (
+                    {imagesToShow.map((image) => (
                         <SwiperSlide key={image} className="swiper-slide-miniatura">
                             <div
                                 className="
@@ -105,14 +104,12 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
                                     shadow
                                 "
                             >
-                                <Image
-                                    src={`/products/${image}`}
-                                    alt={title}
-                                    width={120}
-                                    height={100}
+                                <ProductImage
+                                    src={image}
+                                    alt={image === '/imgs/nophoto.jpg' ? 'Imagen no disponible' : title}
                                     className="object-contain w-full h-full"
-                                    draggable={false}
-                                    priority
+                                    width={190}
+                                    height={150}
                                 />
                             </div>
                         </SwiperSlide>

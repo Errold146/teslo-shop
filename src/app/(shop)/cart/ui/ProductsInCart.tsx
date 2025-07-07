@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCartStore } from '@/store';
-import { QuantitySelector } from '@/components';
+import { ProductImage, QuantitySelector } from '@/components';
 import { formatCurrency } from '@/utils/currency';
 import Link from 'next/link';
 
@@ -29,13 +29,12 @@ export const ProductsInCart = () => {
                     className="flex flex-col sm:flex-row items-center bg-gray-50 rounded-xl shadow-md p-6 transition hover:shadow-lg gap-6"
                 >
                     {/* Imagen del producto */}
-                    <Image
-                        src={`/products/${prod.image}`}
+                    <ProductImage
+                        src={prod.image}
                         alt={prod.title}
                         width={150}
                         height={150}
                         className="rounded-lg object-cover border border-gray-300 mx-auto sm:mx-0"
-                        priority
                     />
 
                     {/* Detalles del producto */}

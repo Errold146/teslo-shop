@@ -83,51 +83,94 @@ body {
 }
 
 .btn-primary {
-    background-color: #4f46e5; /* Tailwind bg-indigo-600 */
-    color: #fff; /* Tailwind text-white */
-    padding-top: 0.5rem; /* Tailwind py-2 */
+    background-color: #4f46e5;
+    color: #fff;
+    padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    padding-left: 1rem; /* Tailwind px-4 */
+    padding-left: 1rem;
     padding-right: 1rem;
-    border-radius: 0.25rem; /* Tailwind rounded */
-    transition: all 0.2s;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        transform 0.1s;
+    box-shadow: 0 2px 8px 0 rgba(79, 70, 229, 0.10);
+    letter-spacing: 0.02em;
 }
 
-.btn-primary:hover {
-    background-color: #3730a3; /* Tailwind hover:bg-indigo-800 */
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #3730a3;
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(79, 70, 229, 0.18);
+    transform: translateY(-2px) scale(1.03);
+    outline: none;
+}
+
+.btn-primary:active {
+    background-color: #312e81;
+    box-shadow: 0 1px 4px 0 rgba(79, 70, 229, 0.10);
+    transform: scale(0.98);
 }
 
 .btn-secondary {
-    background-color: #e5e7eb; /* Tailwind bg-gray-200 */
-    color: #000; /* Tailwind text-black */
-    padding-top: 0.5rem; /* Tailwind py-2 */
+    background-color: #e5e7eb;
+    color: #000;
+    padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    padding-left: 1rem; /* Tailwind px-4 */
+    padding-left: 1rem;
     padding-right: 1rem;
-    border-radius: 0.25rem; /* Tailwind rounded */
-    transition: all 0.2s;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        transform 0.1s;
+    box-shadow: 0 2px 8px 0 rgba(156, 163, 175, 0.10);
+    letter-spacing: 0.02em;
 }
 
-.btn-secondary:hover {
-    background-color: #d1d5db; /* Tailwind hover:bg-gray-300 */
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #d1d5db;
+    color: #111;
+    box-shadow: 0 4px 16px 0 rgba(156, 163, 175, 0.18);
+    transform: translateY(-2px) scale(1.03);
+    outline: none;
+}
+
+.btn-secondary:active {
+    background-color: #9ca3af;
+    box-shadow: 0 1px 4px 0 rgba(156, 163, 175, 0.10);
+    transform: scale(0.98);
 }
 
 .btn-disabled {
     background-color: #e2e8f0;
-    /* gray-300 */
     color: #6b7280;
-    /* gray-500 */
     cursor: not-allowed;
     opacity: 0.7;
     pointer-events: none;
     border-radius: 0.5rem;
     padding: 0.75rem 1.5rem;
     font-weight: 600;
-    transition: background-color 0.2s ease; 
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        transform 0.1s;
+    box-shadow: 0 2px 8px 0 rgba(156, 163, 175, 0.10);
 }
 
-.btn-disabled:hover {
-    background-color: #e2e8f0; 
+.btn-disabled:hover,
+.btn-disabled:focus {
+    background-color: #e2e8f0;
+    color: #6b7280;
+    box-shadow: 0 2px 8px 0 rgba(156, 163, 175, 0.10);
+    transform: none;
 }
 
 /* styles/globals.css */
@@ -145,4 +188,46 @@ body {
 
 .animate-fade-in {
     animation: fade-in 0.25s ease-out; 
+}
+
+
+.btn-error {
+    background-color: #dc2626;
+    /* Tailwind bg-red-600 */
+    color: #fef2f2;
+    /* Tailwind text-red-50 */
+    padding-top: 0.5rem;
+    /* Tailwind py-2 */
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    /* Tailwind px-4 */
+    padding-right: 1rem;
+    border-radius: 0.375rem;
+    /* Tailwind rounded-md */
+    font-weight: 600;
+    /* Tailwind font-semibold */
+    box-shadow: 0 2px 8px 0 rgba(220, 38, 38, 0.10);
+    letter-spacing: 0.02em;
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s,
+        transform 0.1s;
+}
+
+.btn-error:hover,
+.btn-error:focus {
+    background-color: #b91c1c;
+    /* Tailwind hover:bg-red-700 */
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(220, 38, 38, 0.18);
+    transform: translateY(-2px) scale(1.03);
+    outline: none;
+}
+
+.btn-error:active {
+    background-color: #991b1b;
+    /* Tailwind active:bg-red-800 */
+    box-shadow: 0 1px 4px 0 rgba(220, 38, 38, 0.10);
+    transform: scale(0.98);
 }

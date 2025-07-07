@@ -1,14 +1,12 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { IoCardOutline, IoCloseCircleOutline } from "react-icons/io5";
-import clsx from "clsx";
-import { PayPalButton, Title } from "@/components";
+import { OrderStatus, PayPalButton, ProductImage, Title } from "@/components";
 import { getOrderById } from "@/actions";
 import { formatCurrency } from "@/utils/currency";
 
 export const metadata = {
-    title: "Ordenes",
+    title: "Estado de la orden",
     description: "Aquí te presentamos un resumen de tus ordenes."
 };
 
@@ -35,26 +33,8 @@ export default async function OrderPageId({params}) {
 
                 <div className="grid grid-cols-1 gap-6">
 
-                    {/* Continuar comprando */}
-                    <div className={
-                        clsx(
-                            "flex items-center rounded-lg py-2 px-3.5 text-xs font-semibold text-white mb-5",
-                            {
-                                "bg-red-500": !order!.isPaid,
-                                "bg-green-500": order!.isPaid
-                            }
-                        )
-                    }>
-                        <IoCardOutline size={30} />
-                        {/* <span className=" ml-3 text-sm">Pendiente de pago</span> */}
-                        <span className=" ml-3 text-sm">
-                            {
-                                order?.isPaid ? 'Cancelada.' : 'Pendiente de pago...'
-                            }
-                        </span>
-                    </div>
-
-                    <h2 className="text-2xl font-semibold">Productos comprados</h2>
+                    <OrderStatus isPaid={order!.isPaid} />
+                    <h2 className="text-2xl font-semibold">Productos de la orden.</h2>
 
                     {/* Items en el carrito */}
                     {order!.OrderItem.map(item => (
@@ -63,13 +43,12 @@ export default async function OrderPageId({params}) {
                             className="flex flex-col sm:flex-row items-center bg-white rounded-2xl shadow-sm border border-gray-200 p-6 transition hover:shadow-md gap-6"
                         >
                             {/* Imagen del producto */}
-                            <Image
-                                src={`/products/${item.product.ProductImage[0].url}`}
+                            <ProductImage
+                                src={item.product.ProductImage?.[0]?.url}
                                 alt={item.product.title}
                                 width={140}
                                 height={140}
                                 className="rounded-lg object-cover border border-gray-300 mx-auto sm:mx-0"
-                                priority
                             />
 
                             {/* Detalles del producto */}
@@ -146,24 +125,9 @@ export default async function OrderPageId({params}) {
                         <span className="text-right text-2xl text-indigo-600">{formatCurrency(order!.total)}</span>
                     </div>
                     <div className="mt-5 md:mx-8 w-full">
-                        { order!.isPaid
-                            ? (
-                                <div
-                                    className={clsx(
-                                        "flex items-center rounded-lg py-2 mr-14 px-3.5 text-xs font-semibold text-white mb-5",
-                                        "bg-green-500" 
-                                    )}
-                                >
-                                    <IoCardOutline size={30} />
-                                    <span className="ml-3 text-sm">
-                                        Esta orden ha sido cancelada, pronto recibara su pedido, muchas gracias!.
-                                    </span>
-                                </div>
-                            )
-                            : (<PayPalButton 
-                                amount={order!.total} 
-                                orderId={order!.id} 
-                            />)
+                        {order!.isPaid
+                            ? (<OrderStatus isPaid={order!.isPaid} className="mx-auto mr-16" />)
+                            : (<PayPalButton amount={order!.total} orderId={order!.id} />)
                         }
                     </div>
                 </div>

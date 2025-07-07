@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useCartStore } from '@/store';
 import { formatCurrency } from '@/utils/currency';
+import { ProductImage } from '@/components';
 
 export const ProductsInCart = () => {
 
@@ -26,13 +26,12 @@ export const ProductsInCart = () => {
                 >
                     {/* Imagen */}
                     <div className="w-full h-[150px] overflow-hidden rounded-lg border border-gray-300 bg-white">
-                        <Image
-                            src={`/products/${prod.image}`}
+                        <ProductImage
+                            src={prod.image}
                             alt={prod.title}
                             width={150}
                             height={150}
                             className="w-full h-full object-cover"
-                            priority
                         />
                     </div>
 

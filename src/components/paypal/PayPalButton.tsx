@@ -66,15 +66,17 @@ export const PayPalButton = ({ orderId, amount }: Props) => {
     }
 
     return (
-        <PayPalButtons
-            createOrder={createOrder}
-            onApprove={onApprove}
-            style={{
-                layout: 'vertical', // 'vertical' también es opción
-                color: 'blue',
-                shape: 'pill',
-                label: 'pay',
-            }}
-        />
+        <div className=" relative z-0">
+            <PayPalButtons
+                createOrder={createOrder}
+                onApprove={onApprove}
+                style={{
+                    layout: 'vertical', // 'vertical' también es opción
+                    color: 'blue',
+                    shape: 'pill',
+                    label: 'pay',
+                }}
+            />
+        </div>
     )
 }

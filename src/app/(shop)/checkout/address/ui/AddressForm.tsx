@@ -1,6 +1,6 @@
 "use client"
 
-import { useTransition, useEffect } from 'react'
+import { useTransition } from 'react'
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { IoWarningOutline } from "react-icons/io5"
@@ -52,13 +52,6 @@ export const AddressForm = ({ countries, userStoreAddress = {} }: Props) => {
 
     const setAddress = useAddressStore(state => state.setAddress)
     const address = useAddressStore(state => state.address)
-
-    // useEffect(() => {
-    //     if ( address.firstName ) {
-    //         reset( address )
-    //     }
-    // }, [])
-
 
     const onSubmit = useAddressSubmitHandler(session, setAddress)
 

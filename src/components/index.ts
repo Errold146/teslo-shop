@@ -1,4 +1,7 @@
+export * from "./orders/OrderStatus"
+export * from "./orders/SalesSummary"
 export * from "./paypal/PayPalButton"
+export * from "./product/image/ProductImage"
 export * from "./product/quantity-selector/QuantitySelector"
 export * from "./product/size-selector/SizeSelector"
 export * from "./product/slideshow/ProductSlideShow"

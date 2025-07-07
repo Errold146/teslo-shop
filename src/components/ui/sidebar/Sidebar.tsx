@@ -135,15 +135,27 @@ export const Sidebar = () => {
                     <>
                         <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-4" />
                         <div className="flex flex-col gap-2">
-                            <Link href={"/"} onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group">
+                            <Link 
+                                href={"/admin/products"} 
+                                onClick={closeMenu} 
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
+                            >
                                 <IoShirtOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                                 <span className="text-lg font-medium text-gray-800">Productos</span>
                             </Link>
-                            <Link href={"/"} onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group">
+                            <Link 
+                                href={"/admin/orders"} 
+                                onClick={closeMenu} 
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
+                            >
                                 <ImListNumbered size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                                 <span className="text-lg font-medium text-gray-800">Pedidos</span>
                             </Link>
-                            <Link href={"/"} onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group">
+                            <Link 
+                                href={"/admin/users"} 
+                                onClick={closeMenu} 
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 transition-all group"
+                            >
                                 <IoPeopleOutline size={24} className="text-indigo-500 group-hover:scale-110 transition-transform" />
                                 <span className="text-lg font-medium text-gray-800">Usuarios</span>
                             </Link>
@@ -154,7 +166,7 @@ export const Sidebar = () => {
                 {/* Footer */}
                 <div className="flex-1" />
                 <div className="text-center text-gray-500 pb-2">
-                    © {new Date().getFullYear()} Teslo Shop
+                    © {new Date().getFullYear()} Teslo | Shop
                 </div>
             </nav>
         </div>
