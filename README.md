@@ -4,20 +4,35 @@
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 [![CSS3](https://img.shields.io/badge/CSS-663399?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Axios](https://img.shields.io/badge/Axios-1.x-5A29E4?logo=axios&logoColor=white)](https://axios-http.com/)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Sonner](https://img.shields.io/badge/Sonner-2.x-ff6b6b?logo=react&logoColor=white)](https://github.com/emilkowalski/sonner)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.x-0055FF?logo=framer&logoColor=white)](https://motion.dev/)
+[![Zod](https://img.shields.io/badge/Zod-4.x-3178c6?logo=typescript&logoColor=white)](https://zod.dev/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.x-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-2.x-3448c5?logo=cloudinary&logoColor=white)](https://cloudinary.com/)
+[![React Icons](https://img.shields.io/badge/React_Icons-5.x-61DAFB?logo=react&logoColor=white)](https://github.com/react-icons/react-icons)
+[![Swiper](https://img.shields.io/badge/Swiper-11.x-6332f6?logo=swiper&logoColor=white)](https://swiperjs.com/)
+[![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.x-ec5990?logo=react&logoColor=white)](https://react-hook-form.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-6.x-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Auth.js](https://img.shields.io/badge/Auth.js-1.x-0f172a?logo=auth0&logoColor=white)](https://authjs.dev/)
+[![PayPal](https://img.shields.io/badge/PayPal-@react--paypal--js-003087?logo=paypal&logoColor=white)](https://www.npmjs.com/package/@paypal/react-paypal-js)
 
-# Teslo Shop
+## 🛍️ Teslo Shop – E-commerce moderno con enfoque profesional
 
-Este proyecto es una tienda en línea desarrollada con [Next.js](https://nextjs.org), diseñada para ofrecer una experiencia de compra moderna y eficiente.
+**Teslo Shop** es una aplicación de comercio electrónico construida con tecnologías de vanguardia, diseñada para ofrecer una experiencia de usuario fluida, accesible y visualmente atractiva. El proyecto simula un entorno de compra realista, integrando funcionalidades clave como autenticación, gestión de productos, procesamiento de pagos y administración de pedidos.
 
-## 🚀 Características
+### ✨ Características destacadas
 
-- Catálogo de productos dinámico
-- Carrito de compras con persistencia
-- Autenticación y gestión de usuarios
-- Panel administrativo para productos y órdenes
-- Diseño totalmente responsive
+- **Frontend moderno:** Interfaz desarrollada con Next.js 14, React 19 y Tailwind CSS, optimizada para rendimiento y responsividad.
+- **Gestión de estado eficiente:** Uso de Zustand para un manejo de estado global sencillo, predecible y escalable.
+- **Validaciones robustas:** Formularios validados con Zod y React Hook Form, garantizando precisión y accesibilidad.
+- **Animaciones elegantes:** Transiciones y feedback visual implementados con Framer Motion y Sonner para mejorar la experiencia del usuario.
+- **Procesamiento de pagos:** Integración con PayPal Sandbox para simular flujos de pago reales.
+- **Base de datos sólida:** PostgreSQL gestionado mediante Prisma ORM para consultas eficientes y tipadas.
+- **Carga y gestión de imágenes:** Soporte para Cloudinary, permitiendo almacenamiento y transformación de imágenes en la nube.
+- **Componentes reutilizables:** Arquitectura modular con componentes como `PreviousAddressesSelector` y `OrderStatus`, diseñados para escalabilidad.
+- **Contenedor listo para producción:** Configuración con Docker para facilitar despliegue y consistencia entre entornos.
 
 ## 🧪 Tecnologías utilizadas
 
@@ -29,6 +44,18 @@ Este proyecto es una tienda en línea desarrollada con [Next.js](https://nextjs.
 - [Prisma](https://www.prisma.io/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [Docker](https://www.docker.com/)
+- [Sonner](https://github.com/emilkowalski/sonner)
+- [Framer Motion](https://motion.dev/)
+- [Zod](https://zod.dev/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Cloudinary](https://cloudinary.com/)
+- [React Icons](https://github.com/react-icons/react-icons)
+- [Swiper](https://swiperjs.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Prisma](https://www.prisma.io/)
+- [Node.js](https://nodejs.org/)
+- [Auth.js](https://authjs.dev/)
+- [PayPal](https://www.npmjs.com/package/@paypal/react-paypal-js)
 
 ## ⚙️ Instalación y ejecución local
 
