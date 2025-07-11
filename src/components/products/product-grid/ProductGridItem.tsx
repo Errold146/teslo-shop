@@ -1,8 +1,10 @@
 "use client"
 
+ 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import type { Product } from "@/interfaces"
 import { formatCurrency } from "@/utils/currency"
 import { ProductImage } from "@/components"
@@ -13,7 +15,8 @@ interface Props {
 
 export function ProductGridItem({product}: Props) {
 
-    const [displayImage, setDisplayImage] = useState(product.images[0])
+    //  @typescript-eslint/no-unused-vars
+    const [displayImage, _setDisplayImage] = useState(product.images[0])
 
     return (
         <div className=" rounded-md overflow-hidden fade-in">

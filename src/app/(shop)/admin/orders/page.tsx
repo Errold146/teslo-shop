@@ -12,16 +12,23 @@ export const metadata = {
     description: "Revisión del total de las ordenes realizadas."
 };
 
-export default async function OrdersAdminPage() {
+type Order = {
+    id: string;
+    isPaid: boolean;
+    total: number;
+    createAt: string;
+    OrderAddress?: {
+        firstName?: string;
+        lastName?: string;
+    };
+};
 
-    // { searchParams }: { searchParams: { month ?: string, year ?: string } }
-    // const month = Number(searchParams.month);
-    // const year = Number(searchParams.year);
+export default async function OrdersAdminPage() {
 
     const session = await auth()
     if ( session?.user.role !== 'admin' ) redirect('/');
 
-    const { ok, orders = [] } = await getPaginatedOrders()
+    const { ok, orders = [] } = await getPaginatedOrders() as { ok: boolean, orders: Order[] }
     if (!ok) redirect('/auth/login');
 
     return (
@@ -46,9 +53,6 @@ export default async function OrdersAdminPage() {
                                 </th>
                                 <th className="px-4 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                                     Fecha
-                                </th>
-                                <th className="px-4 py-3 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                    Total
                                 </th>
                                 <th scope="col" className="px-4 py-3 sm:px-6 sm:py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                                     Opciones

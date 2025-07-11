@@ -3,7 +3,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { formatCurrency } from "@/utils/currency";
 import type { Product } from "@/interfaces";
 import { ProductImage } from "@/components";

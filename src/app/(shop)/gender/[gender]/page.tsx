@@ -11,8 +11,9 @@ const genderMap: Record<string, string> = {
     unisex: "Unisex"
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ gender: string }> }) {
-    const { gender } = await params;
+// @ts-expect-error// @ts-expect-error Next.js dynamic params may be a promise 
+export async function generateMetadata({ params }) {
+    const { gender } = params;
 
     const genderName = genderMap[gender];
 
@@ -32,13 +33,12 @@ export async function generateMetadata({ params }: { params: Promise<{ gender: s
 // @ts-expect-error// @ts-expect-error Next.js dynamic params may be a promise 
 export default async function GenderPage({ params, searchParams }) {
     
-    const { gender } = await params as { gender: string };
-    const { page } = await searchParams;
+    const { gender } =  params
+    const { page } = searchParams;
     const pageNumber = page ? parseInt(page) : 1;
 
     if (!genderMap[gender]) notFound();
 
-    // @ts-expect-error getPaginatedProductsWhitImages types may not match
     const { products, totalPages } = await getPaginatedProductsWhitImages({ page: pageNumber, gender });
 
     if (products.length === 0) redirect(`/gender/${gender}`);

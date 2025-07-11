@@ -1,6 +1,6 @@
 "use client"
 
-import { PayPalScriptProvider, BraintreePayPalButtons } from "@paypal/react-paypal-js"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { SessionProvider } from "next-auth/react"
 
 interface Props {

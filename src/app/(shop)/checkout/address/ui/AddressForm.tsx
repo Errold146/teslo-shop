@@ -1,5 +1,7 @@
 "use client"
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useTransition } from 'react'
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
@@ -39,19 +41,20 @@ const fields = [
 
 export const AddressForm = ({ countries, userStoreAddress = {} }: Props) => {
 
-    const { handleSubmit, register, formState: { errors }, reset } = useForm<FormInputs>({
+    const { handleSubmit, register, formState: { errors } } = useForm<FormInputs>({
         mode: 'onTouched',
         defaultValues: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ...(userStoreAddress as any),
             rememberAddress: false
         }
     })
 
+    //@typescript-eslint/no-unused-vars
     const [isPending, startTransition] = useTransition()
     const { data: session } = useSession({ required: true })
 
     const setAddress = useAddressStore(state => state.setAddress)
-    const address = useAddressStore(state => state.address)
 
     const onSubmit = useAddressSubmitHandler(session, setAddress)
 

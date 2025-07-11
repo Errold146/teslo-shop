@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { IoCartOutline } from "react-icons/io5";
 
+export const metadata = {
+    title: "Sin productos",
+    description: 'No hay productos en el carritode compras.'
+};
+
 export default function EmptyPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-[calc(90vh-140px)] px-4 py-10 bg-gradient-to-br from-white to-gray-100">

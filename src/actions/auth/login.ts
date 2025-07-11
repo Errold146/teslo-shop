@@ -1,21 +1,30 @@
-"use server"
+"use server";
 
-import { signIn } from "../../auth.config"
+import { signIn } from "../../auth.config";
 
-export async function authenticate(
-    prevState: string | undefined,
+type AuthState = "Success" | "CredentialsSignin" | "Unknown Error" | undefined;
+
+export const authenticate = async (
+    _prevState: AuthState,
     formData: FormData
-) {
+): Promise<AuthState> => {
     try {
-        await signIn('credentials', {
+        await signIn("credentials", {
             ...Object.fromEntries(formData),
             redirect: false,
-        })
+        });
 
-        return 'Success'
-
+        return "Success";
     } catch (error) {
-        if ((error as any).type === 'CredentialsSignin') return 'CredentialsSignin';
-        return 'Unknown Error'
+        if (
+            typeof error === "object" &&
+            error !== null &&
+            "type" in error &&
+            (error as { type: string }).type === "CredentialsSignin"
+        ) {
+            return "CredentialsSignin";
+        }
+
+        return "Unknown Error";
     }
-}
+};

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import prisma from "@/lib/prisma";
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -16,7 +19,8 @@ export const authConfig: NextAuthConfig = {
             }
             return token
         },
-        session({ session, token, user }) {
+        session({ session, token }) {
+            // @typescript-eslint/no-explicit-any
             session.user = token.data as any
             return session
         },
@@ -42,6 +46,7 @@ export const authConfig: NextAuthConfig = {
                 if ( !bcryptjs.compareSync(password, user.password) ) return null;
 
                 // Regresar el usuario si el password
+                //@typescript-eslint/no-unused-vars
                 const { password: pass, ...rest } = user
                 return rest;
             }

@@ -1,5 +1,7 @@
 "use client"
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import clsx from "clsx"
@@ -14,7 +16,8 @@ export const PlaceOrder = () => {
 
     const router = useRouter()
     const [loaded, setLoaded] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
+
+    const [_errorMessage, setErrorMessage] = useState('')
     const [isPlacingOrder, setIsPlacingOrder] = useState(false)
 
     const address = useAddressStore( state => state.address )

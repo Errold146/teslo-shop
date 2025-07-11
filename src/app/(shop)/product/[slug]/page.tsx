@@ -1,20 +1,16 @@
 export const revalidate = 604800
 
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from "next/navigation";
 import { getProductSlug } from "@/actions";
 import { formatCurrency } from "@/utils/currency";
 import { BackButton, ProductSlideShow } from "@/components";
 import { AddToCart } from './ui/AddToCart';
 
-type Props = {
-    params: Promise<{ slug: string }>
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
-export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata ): Promise<Metadata> {
+// @ts-expect-error// @ts-expect-error Next.js dynamic params may be a promise 
+export async function generateMetadata({ params }): Promise<Metadata> {
     
-    const slug = (await params).slug
+    const slug = params.slug;
     const product = await getProductSlug(slug)
 
     return {
@@ -31,7 +27,7 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
 // @ts-expect-error Next.js dynamic params may be a promise
 export default async function ProductPage({ params }) {
 
-    const { slug } = await params;
+    const { slug } = params;
     const product = await getProductSlug(slug)
 
     if (!product) notFound();

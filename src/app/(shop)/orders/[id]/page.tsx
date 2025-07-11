@@ -1,13 +1,24 @@
 import { redirect } from "next/navigation";
-import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { OrderStatus, PayPalButton, ProductImage, Title } from "@/components";
+import { OrderStatus, PayPalButton, ProductImage } from "@/components";
 import { getOrderById } from "@/actions";
 import { formatCurrency } from "@/utils/currency";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Estado de la orden",
     description: "Aquí te presentamos un resumen de tus ordenes."
+};
+
+type OrderItemType = {
+    product: {
+        slug: string;
+        title: string;
+        ProductImage?: { url: string }[];
+    };
+    size: string;
+    price: number;
+    quantity: number;
 };
 
 // @ts-expect-error Next.js dynamic params may be a promise
@@ -25,19 +36,13 @@ export default async function OrderPageId({params}) {
             <div className="flex flex-col w-full max-w-[1000px] bg-white rounded-xl shadow-lg p-6 sm:p-10">
 
                 {/* Título de la orden */}
-                <Title 
-                    title={'Orden'} 
-                    subTitle={`# ${id.split('-').at(-1)}`}
-                    className="text-3xl font-bold text-gray-900 text-center" 
-                />
-
                 <div className="grid grid-cols-1 gap-6">
 
                     <OrderStatus isPaid={order!.isPaid} />
                     <h2 className="text-2xl font-semibold">Productos de la orden.</h2>
 
                     {/* Items en el carrito */}
-                    {order!.OrderItem.map(item => (
+                    {order!.OrderItem.map((item: OrderItemType) => (
                         <article
                             key={item.product.slug + '-' + item.size}
                             className="flex flex-col sm:flex-row items-center bg-white rounded-2xl shadow-sm border border-gray-200 p-6 transition hover:shadow-md gap-6"
@@ -45,7 +50,7 @@ export default async function OrderPageId({params}) {
                             {/* Imagen del producto */}
                             <ProductImage
                                 src={item.product.ProductImage?.[0]?.url}
-                                alt={item.product.title}
+                                alt={String(item.product.title ?? '')}
                                 width={140}
                                 height={140}
                                 className="rounded-lg object-cover border border-gray-300 mx-auto sm:mx-0"
@@ -63,7 +68,7 @@ export default async function OrderPageId({params}) {
                                     <span className="whitespace-nowrap">{item.quantity}</span>
                                     <span className="text-gray-500">=</span>
                                     <span className="text-indigo-700 font-semibold whitespace-nowrap">
-                                        {formatCurrency(item.price * item.quantity)}
+                                        {formatCurrency(item.price * (typeof item.quantity === 'number' ? item.quantity : Number(item.quantity ?? 1)))}
                                     </span>
                                 </div>
                             </div>

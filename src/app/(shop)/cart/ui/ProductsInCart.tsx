@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useCartStore } from '@/store';
 import { ProductImage, QuantitySelector } from '@/components';
 import { formatCurrency } from '@/utils/currency';

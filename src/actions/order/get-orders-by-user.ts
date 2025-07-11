@@ -3,10 +3,26 @@
 import { auth } from "@/auth.config"
 import prisma from "@/lib/prisma";
 
-export const getOrdersByUser = async () => {
+interface Order {
+    id: string;
+    isPaid: boolean;
+    OrderAddress: {
+        firstName: string;
+        lastName: string;
+    } | null;
+}
+
+export const getOrdersByUser = async (): Promise<{ ok: boolean; message: string; orders: Order[] }> => {
+
 
     const session = await auth()
-    if ( !session?.user ) return { ok: false, message: 'Por favor iniciar sesión.'};
+    if (!session?.user) {
+        return {
+            ok: false,
+            message: 'Por favor iniciar sesión.',
+            orders: []
+        };
+    }
 
     const orders = await prisma.order.findMany({
         where: {
@@ -24,6 +40,7 @@ export const getOrdersByUser = async () => {
 
     return {
         ok: true,
+        message: '',
         orders
     }
 }

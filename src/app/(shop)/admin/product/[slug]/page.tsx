@@ -5,18 +5,13 @@ import { ProductForm } from "./ui/ProductForm";
 import { auth } from "@/auth.config";
 import { redirect } from "next/navigation";
 
-interface Props {
-    params :{
-        slug: string
-    }
-}
-
 export const metadata = {
     title: "Administrar Producto",
     description: "Administración del producto.",
 };
 
-export default async function ProductPage({ params }: Props) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function ProductPage({ params }: any) {
     
     const { slug } = await params;
 

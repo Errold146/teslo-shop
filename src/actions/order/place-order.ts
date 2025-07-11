@@ -1,5 +1,7 @@
 "use server"
 
+import type { Product } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { auth } from "@/auth.config"
 import type { Address, Size } from "@/interfaces"
 import prisma from "@/lib/prisma"
@@ -24,7 +26,7 @@ export const placeOrder = async ( productIds: ProductToOrder[], address: Address
     }
 
     // Obtener la info de los productos
-    const products = await prisma.product.findMany({
+    const products: Product[] = await prisma.product.findMany({
         where: {
             id: {
                 in: productIds.map( prod => prod.productId )
@@ -54,7 +56,7 @@ export const placeOrder = async ( productIds: ProductToOrder[], address: Address
 
     // Crear la transacción de la base de datos
     try {
-        const prismaTx = await prisma.$transaction(async tx => {
+        const prismaTx = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
 
             // 1. Actualizar stock 
             const updatedProductsPromises = products.map(prod => {
@@ -133,10 +135,11 @@ export const placeOrder = async ( productIds: ProductToOrder[], address: Address
             prismaTx
         }
 
-    } catch (error: any) {
+    } catch (error) {
+        console.log(error)
         return {
             ok: false,
-            message: error?.message,
+            message: 'Error inesperado, recargue e intente de nuevo.',
         }
     }
     

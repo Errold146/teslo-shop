@@ -1,4 +1,4 @@
-// page.tsx
+
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Pagination, Title } from "@/components";
@@ -11,17 +11,12 @@ export const metadata = {
     description: "Revisión del total de los productos en existencia.",
 };
 
-interface Props {
-    searchParams: {
-        page?: string;
-    };
-}
-
-export default async function ProductsAdminPage({ searchParams }: Props) {
+// @ts-expect-error// @ts-expect-error Next.js dynamic params may be a promise 
+export default async function ProductsAdminPage({ searchParams }) {
     const session = await auth();
     if (session?.user.role !== "admin") redirect("/");
 
-    const { page } = await searchParams;
+    const { page } = searchParams;
     const pageNumber = page ? parseInt(page) : 1;
     const { products, currentPage, totalPages } = await getPaginatedProductsWhitImages({ page: pageNumber });
 

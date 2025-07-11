@@ -7,9 +7,9 @@ import { getPaginatedProductsWhitImages } from "@/actions";
 // @ts-expect-error Next.js dynamic params may be a promise
 export default async function ShopPage({ searchParams }) {
 
-    const { page } = await searchParams;
+    const { page } = searchParams;
     const pageNumber = page ? parseInt(page) : 1;
-    const { products, totalPages } = await getPaginatedProductsWhitImages({ page: pageNumber })
+    const { products, totalPages } = await getPaginatedProductsWhitImages({ page: pageNumber });
 
     if (products.length === 0) redirect('/');
 

@@ -1,11 +1,11 @@
 "use server"
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import prisma from '@/lib/prisma'
 import { Gender, type Product, type Size } from '@prisma/client'
-import { v2 as cloudinary } from "cloudinary"
-cloudinary.config(process.env.CLOUDINARY_URL ?? '')
+import { cloudinary } from "@/lib/cloudinary"
 
 const productSchema = z.object({
     id: z.string().uuid().optional().nullable(),
@@ -37,7 +37,8 @@ export const createUpdateProduct = async ( formData: FormData ) => {
     const { id, ...rest } = product
 
     try {
-        const prismaTx = await prisma.$transaction(async (tx) => {
+        //@typescript-eslint/no-unused-vars
+        const prismaTx = await prisma.$transaction(async (_tx) => {
 
             let product: Product
             const tagsArray = rest.tags.split(',').map(tag => tag.trim().toLowerCase())
@@ -54,8 +55,6 @@ export const createUpdateProduct = async ( formData: FormData ) => {
                         tags: tagsArray
                     }
                 })
-
-                console.log({ updatedProduct: product })
 
             } else {
                 // Crear
@@ -112,7 +111,7 @@ const uploadImages = async (images: File[]) => {
                 const buffer = await img.arrayBuffer()
                 const base64Image = Buffer.from(buffer).toString('base64')
                 return cloudinary.uploader.upload(`data:image/png;base64,${ base64Image }`)
-                    .then( r => r.secure_url )
+                    .then( (r: { secure_url: any }) => r.secure_url )
                 
             } catch (error) {
                 console.log(error)

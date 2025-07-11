@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useState, useActionState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation"; 
 import { getSession } from 'next-auth/react'
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import { IoInformationOutline } from "react-icons/io5";
 import { authenticate } from "@/actions";
 
 export const LoginForm = () => {
-    const [state, dispatch] = useActionState(authenticate, undefined);
+    const [state, dispatch] = useFormState(authenticate, undefined);
+
     const [showError, setShowError] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
